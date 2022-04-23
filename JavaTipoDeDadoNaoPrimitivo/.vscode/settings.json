@@ -1,0 +1,9 @@
+{
+    "java.project.sourcePaths": [
+        "Pacote de Códigos-fonte"
+    ],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar"
+    ]
+}
