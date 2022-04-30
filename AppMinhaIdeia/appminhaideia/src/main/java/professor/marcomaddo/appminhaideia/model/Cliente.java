@@ -1,8 +1,20 @@
 package professor.marcomaddo.appminhaideia.model;
 
 public class Cliente {
-    String nome;
+    String telefone;
+    boolean sexo;
     String email;
+    String nome;
+    int idade;
+
+    public Cliente(String nome, String email, String telefone, int idade,  boolean sexo) {
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+        this.idade = idade;
+        this.sexo = sexo;
+    }
+
 
     public String getNome() {
         return nome;
@@ -43,8 +55,4 @@ public class Cliente {
     public void setSexo(boolean sexo) {
         this.sexo = sexo;
     }
-
-    String telefone;
-    int idade;
-    boolean sexo;
 }
