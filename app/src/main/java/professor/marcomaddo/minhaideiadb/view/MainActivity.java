@@ -13,12 +13,14 @@ import java.util.List;
 import professor.marcomaddo.minhaideiadb.R;
 import professor.marcomaddo.minhaideiadb.api.AppUtil;
 import professor.marcomaddo.minhaideiadb.controller.ClienteController;
+import professor.marcomaddo.minhaideiadb.controller.ProdutoController;
 import professor.marcomaddo.minhaideiadb.model.Cliente;
+import professor.marcomaddo.minhaideiadb.model.Produto;
 
 public class MainActivity extends AppCompatActivity {
 
-    ClienteController clienteController;
-    Cliente objCliente;
+    ProdutoController produtoController;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,22 +29,16 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d(AppUtil.TAG, "AppDataBase: App Minha Ideia DataBase");
 
-        objCliente = new Cliente();
-        objCliente.setEmail("***nuca@example.com");
-        objCliente.setId(2);
-        objCliente.setNome("***** Nuca");
+        produtoController = new ProdutoController(getApplicationContext());
 
-        clienteController = new ClienteController(getApplicationContext());
+        List<Produto> produtos = produtoController.listar();
 
-        if(clienteController.alterar(objCliente)) {
-            Toast.makeText(MainActivity.this, "Cliente "+ objCliente.getNome()+" atualizado com sucesso!", Toast.LENGTH_LONG).show();
-            Log.d(AppUtil.TAG, "Cliente "+ objCliente.getNome()+" atualizado com sucesso!");
-        } else {
-            Toast.makeText(MainActivity.this, "Cliente "+ objCliente.getNome()+" não atualizado com sucesso!", Toast.LENGTH_LONG).show();
-            Log.e(AppUtil.TAG, "Cliente "+ objCliente.getNome()+" não atualizado com sucesso!");
+        for (int i = 0; i < produtos.size(); i++) {
+            Produto objProduto = produtos.get(i);
+
+            Log.i("Listar", objProduto.getNome());
+
+            produtoController.incluir(objProduto);
         }
-
-
-
     }
 }

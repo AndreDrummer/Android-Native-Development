@@ -1,16 +1,23 @@
 package professor.marcomaddo.minhaideiadb.datasource;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import professor.marcomaddo.minhaideiadb.api.AppUtil;
 import professor.marcomaddo.minhaideiadb.datamodel.ClienteDataModel;
 import professor.marcomaddo.minhaideiadb.datamodel.ProdutoDataModel;
+import professor.marcomaddo.minhaideiadb.model.Cliente;
+import professor.marcomaddo.minhaideiadb.model.Produto;
 
 public class AppDataBase extends SQLiteOpenHelper {
 
@@ -89,6 +96,82 @@ public class AppDataBase extends SQLiteOpenHelper {
 
         return retorno;
     }
+
+    protected List<Cliente> getAllClientes(String tabela) {
+        db = getReadableDatabase();
+        List<Cliente> clientes = new ArrayList<>();
+
+        try {
+            Cursor cursor = db.rawQuery("SELECT * FROM "+tabela, null);
+
+            if(cursor.moveToFirst()) {
+                do {
+                    Cliente newCliente = new Cliente();
+
+                    @SuppressLint("Range")
+                    int clienteId = cursor.getInt(cursor.getColumnIndex(ClienteDataModel.ID));
+
+                    @SuppressLint("Range")
+                    String clienteNome = cursor.getString(cursor.getColumnIndex(ClienteDataModel.NOME));
+
+                    @SuppressLint("Range")
+                    String clienteEmail = cursor.getString(cursor.getColumnIndex(ClienteDataModel.EMAIL));
+
+
+                    newCliente.setId(clienteId);
+                    newCliente.setNome(clienteNome);
+                    newCliente.setEmail(clienteEmail);
+
+                    clientes.add(newCliente);
+
+                } while(cursor.moveToNext());
+            }
+        } catch (Exception e) {
+            Log.e(AppUtil.TAG, "getAllClientes: "+e.getMessage());
+        }
+
+        return clientes;
+    }
+
+    protected List<Produto> getAllProdutos(String tabela) {
+        db = getReadableDatabase();
+
+        List<Produto> produtos = new ArrayList<>();
+
+        try {
+            Cursor cursor = db.rawQuery("SELECT * FROM "+tabela, null);
+
+            if(cursor.moveToFirst()) {
+                do {
+                    Produto newProduto = new Produto();
+
+                    @SuppressLint("Range")
+                    int produtoId = cursor.getInt(cursor.getColumnIndex(ProdutoDataModel.ID));
+
+                    @SuppressLint("Range")
+                    String produtoNome = cursor.getString(cursor.getColumnIndex(ProdutoDataModel.NOME));
+
+                    @SuppressLint("Range")
+                    String produtoFornecedor = cursor.getString(cursor.getColumnIndex(ProdutoDataModel.FORNECEDOR));
+
+                    newProduto.setId(produtoId);
+                    newProduto.setNome(produtoNome);
+                    newProduto.setFornecedor(produtoFornecedor);
+
+                    produtos.add(newProduto);
+
+                } while(cursor.moveToNext());
+            }
+        } catch (Exception e) {
+            Log.e(AppUtil.TAG, "getAllProdutos: "+e.getMessage());
+        }
+
+
+        return produtos;
+    }
+
+
+
 
 
 

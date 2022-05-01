@@ -52,8 +52,8 @@ public class ClienteController extends AppDataBase implements  ICrud<Cliente> {
 
     @Override
     public List<Cliente> listar() {
-        List<Cliente> lista = new ArrayList<>();
 
-        return lista;
+
+        return getAllClientes(ClienteDataModel.TABELA);
     }
 }
