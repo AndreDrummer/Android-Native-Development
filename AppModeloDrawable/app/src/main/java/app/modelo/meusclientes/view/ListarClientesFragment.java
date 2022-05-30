@@ -3,6 +3,9 @@ package app.modelo.meusclientes.view;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,17 +73,30 @@ public class ListarClientesFragment extends Fragment {
 
         clientesList = clienteController.listar();
 
-        clientes = new ArrayList<>();
-
-        // TODO - Implementar regra de negócio na controladora da classe Cliente
-
-        for (Cliente obj: clientesList) {
-            clientes.add(obj.getId()+", "+obj.getNome());
-        }
+        clientes = clienteController.gerarListDeClientesView();
 
         clienteAdapter = new ArrayAdapter<>(getContext(), R.layout.listar_cliente_item, R.id.txtItemLista, clientes);
 
         listView.setAdapter(clienteAdapter);
+
+        editPesquisarNome.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                ListarClientesFragment.this.clienteAdapter.getFilter().filter(s);
+
+                Log.i("add_list_view", "beforeTextChanged: "+s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
 
         return view;
