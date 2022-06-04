@@ -25,7 +25,7 @@ import app.modelo.meusclientes.controller.ClienteController;
 import app.modelo.meusclientes.model.Cliente;
 
 
-public class ListarClientesFragment extends Fragment {
+public class ListarClientesCardsFragment extends Fragment {
 
     // Fragment - Classe responsável pela camada de VISÃO (Layout)
     View view;
@@ -44,7 +44,7 @@ public class ListarClientesFragment extends Fragment {
 
     Cliente objCliente;
 
-    public ListarClientesFragment() {
+    public ListarClientesCardsFragment() {
     }
 
     @Override
@@ -57,11 +57,11 @@ public class ListarClientesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.fragment_listar_clientes, container, false);
+        view = inflater.inflate(R.layout.fragment_listar_clientes_cards, container, false);
 
         TextView txtTitulo = view.findViewById(R.id.txtTitulo);
 
-        txtTitulo.setText(R.string.fragmento_listar_clientes);
+        txtTitulo.setText(R.string.fragmento_listar_clientes_cards);
 
         // Trocar a cor da propriedade texto (setTextColor)
         txtTitulo.setTextColor(ColorStateList.valueOf(Color.RED));
@@ -87,7 +87,7 @@ public class ListarClientesFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                ListarClientesFragment.this.clienteAdapter.getFilter().filter(s);
+                ListarClientesCardsFragment.this.clienteAdapter.getFilter().filter(s);
 
                 Log.i("add_list_view", "beforeTextChanged: "+s);
             }

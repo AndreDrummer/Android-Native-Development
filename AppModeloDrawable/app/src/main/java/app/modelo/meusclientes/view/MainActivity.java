@@ -21,6 +21,9 @@ import com.google.android.material.snackbar.Snackbar;
 import app.modelo.meusclientes.R;
 import app.modelo.meusclientes.controller.ClienteController;
 
+//TODO - Criar o novo Layout para suporte aos CARS
+//TODO - Criar o novo Layout para suporte aos CARS ListView (ITENS)
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -70,7 +73,7 @@ public class MainActivity extends AppCompatActivity
         fragmentManager = getSupportFragmentManager();
 
         // content_fragment usado para receber os layouts dos fragmentos
-        fragmentManager.beginTransaction().replace(R.id.content_fragment, new ListarClientesFragment()).commit();
+        fragmentManager.beginTransaction().replace(R.id.content_fragment, new AdicionarClienteCardFragment()).commit();
 
 
         ClienteController clienteController = new ClienteController(getBaseContext());
@@ -114,7 +117,6 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        // TODO: opter ID para a opção selecionada no MENU DRAWER
         if (id == R.id.nav_preto) {
 
             menu = navigationView.getMenu();
@@ -146,7 +148,6 @@ public class MainActivity extends AppCompatActivity
             nav_azul = menu.findItem(R.id.nav_azul);
             nav_azul.setTitle("Azul");
 
-            // TODO: Mudar a cor de todos os itens do menu programaticamente
             navigationView.setItemTextColor(ColorStateList.valueOf(Color.BLACK));
 
             fragmentManager.beginTransaction().replace(R.id.content_fragment, new ModeloVermelhoFragment()).commit();
@@ -173,10 +174,19 @@ public class MainActivity extends AppCompatActivity
 
             fragmentManager.beginTransaction().replace(R.id.content_fragment, new AdicionarClienteFragment()).commit();
         }
+        else if (id == R.id.nav_adicionar_cliente_card) {
+            setTitle("Novo Cliente (Cards)");
+
+            fragmentManager.beginTransaction().replace(R.id.content_fragment, new AdicionarClienteCardFragment()).commit();
+        }
         else if (id == R.id.nav_listar_clientes) {
             setTitle("Meus Clientes");
 
             fragmentManager.beginTransaction().replace(R.id.content_fragment, new ListarClientesFragment()).commit();
+        } else if (id == R.id.nav_listar_clientes_cards) {
+            setTitle("Meus Clientes");
+
+            fragmentManager.beginTransaction().replace(R.id.content_fragment, new ListarClientesCardsFragment()).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -8,13 +8,14 @@
     <string name="action_settings">Sair</string>
 
     <string name="modelo_fragment">Cliente VIP DEMO</string>
-    <string name="listar_clientes_fragment">Lista de Clientes</string>
 
     <!-- Opções do Menu Lateral Drawer -->
-    <string name="fragmento_preto">Fragmento Preto</string>
     <string name="fragmento_adicionar_cliente">Adicionar Cliente</string>
+    <string name="fragmento_adicionar_cliente_card">Adicionar Cliente (Cards)</string>
     <string name="fragmento_listar_clientes">Listar Clientes</string>
+    <string name="fragmento_listar_clientes_cards">Listar Clientes (Cards)</string>
     <string name="titulo_preto">Preto</string>
+    <string name="fragmento_preto">Fragmento Preto</string>
     <string name="fragmento_vermelho">Fragmento Vermelho</string>
     <string name="titulo_vermelho">Vermelho</string>
     <string name="fragmento_azul">Fragmento Azul</string>
@@ -26,5 +27,7 @@
     <!-- Textos para o Layout Adicionar Novo Cliente -->
 
     <string name="novoCliente">Adicionar Novo Cliente</string>
+    <string name="txtPerfilContato">Perfil e Contato</string>
+    <string name="txtEndereco">Endereço</string>
 
 </resources>
