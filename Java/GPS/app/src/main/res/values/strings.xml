@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">GPS App</string>
+    <string name="txt_coordenadas_gps_java">Coordenadas GPS (Java)</string>
+    <string name="text_valor_zero">0.00</string>
+    <string name="text_longitude">Longitude</string>
+    <string name="txt_latitude">Latitude</string>
+    <string name="txt_pin_gps_do_mapa">Pin GPS do Mapa</string>
+</resources>
