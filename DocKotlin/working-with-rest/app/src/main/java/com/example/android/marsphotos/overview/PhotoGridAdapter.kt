@@ -8,20 +8,13 @@ import androidx.recyclerview.widget.ListAdapter
 import com.example.android.marsphotos.databinding.GridViewItemBinding
 import com.example.android.marsphotos.network.MarsPhoto
 
-class PhotoGridAdapter : ListAdapter<MarsPhoto, PhotoGridAdapter.MarsPhotoViewHolder>(DiffCallback) {
+class PhotoGridAdapter :
+    ListAdapter<MarsPhoto, PhotoGridAdapter.MarsPhotoViewHolder>(DiffCallback) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoGridAdapter.MarsPhotoViewHolder {
-        return MarsPhotoViewHolder(GridViewItemBinding.inflate(LayoutInflater.from(parent.context)))
-    }
-
-    override fun onBindViewHolder(holder: PhotoGridAdapter.MarsPhotoViewHolder, position: Int) {
-        val marsPhoto = getItem(position)
-        holder.bind(marsPhoto)
-    }
-
-    class MarsPhotoViewHolder(private var binding: GridViewItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(MarsPhoto: MarsPhoto) {
-            binding.photo = MarsPhoto
+    class MarsPhotoViewHolder(private var binding: GridViewItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(marsPhoto: MarsPhoto) {
+            binding.photo = marsPhoto
             binding.executePendingBindings()
         }
     }
@@ -35,5 +28,16 @@ class PhotoGridAdapter : ListAdapter<MarsPhoto, PhotoGridAdapter.MarsPhotoViewHo
             return oldItem.imgSrcUrl == newItem.imgSrcUrl
         }
 
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MarsPhotoViewHolder {
+        return MarsPhotoViewHolder(
+            GridViewItemBinding.inflate(LayoutInflater.from(parent.context))
+        )
+    }
+
+    override fun onBindViewHolder(holder: MarsPhotoViewHolder, position: Int) {
+        val marsPhoto = getItem(position)
+        holder.bind(marsPhoto)
     }
 }
