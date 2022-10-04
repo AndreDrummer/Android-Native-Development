@@ -70,6 +70,7 @@ class MainActivity : ComponentActivity() {
                     color = surfaceColor,
                     modifier = Modifier.animateContentSize().padding(1.dp)
                 
+
                 ) {
                     Text(
                         text = msg.body,
